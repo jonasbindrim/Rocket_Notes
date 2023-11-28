@@ -1,7 +1,8 @@
 use std::sync::{Arc, Mutex};
 
-use api::note_api::{create_note, read_note};
-use manager::note_manager::NoteManager;
+use api::note::{create, delete, list_all, read};
+use manager::note::NoteManager;
+use rocket::{Build, Rocket};
 
 #[macro_use]
 extern crate rocket;
@@ -11,8 +12,8 @@ mod data;
 mod manager;
 
 #[launch]
-fn launch() -> _ {
+fn launch() -> Rocket<Build> {
     rocket::build()
         .manage(Arc::new(Mutex::new(NoteManager::new())))
-        .mount("/note", routes![create_note, read_note])
+        .mount("/note", routes![create, read, list_all, delete])
 }

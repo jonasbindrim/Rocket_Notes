@@ -1,2 +1,5 @@
-# Requests which reads the data of a node
-GET http://127.0.0.1:8000/note/read/0 HTTP/1.1
+### Requests which reads the data of the note "TestNote"
+GET http://127.0.0.1:8000/note/read/TestNote HTTP/1.1
+
+### Requests which reads the data of the note "Another one"
+GET http://127.0.0.1:8000/note/read/Another one HTTP/1.1

@@ -1,1 +1,1 @@
-pub mod note_api;
+pub mod note;

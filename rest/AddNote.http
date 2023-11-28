@@ -1,8 +1,18 @@
-# Requests which creates a new note
+### Requests which creates the note "TestNote"
 POST http://127.0.0.1:8000/note/create HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Test Note",
-    "content": "Some random content"
+    "title": "TestNote",
+    "content": "Some test content"
+}
+
+
+### Requests which creates the note "Another one"
+POST http://127.0.0.1:8000/note/create HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Another one",
+    "content": "Another one"
 }
