@@ -7,7 +7,9 @@ edition = "2021"
 
 [lints.clippy]
 pedantic = "warn"
-
+needless_pass_by_value = "allow"
+module_name_repetitions = "allow"
+no_effect_underscore_binding = "allow"
 
 [dependencies]
 rocket = { version = "0.5.0", features = ["json"] }
