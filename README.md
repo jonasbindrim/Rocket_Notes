@@ -7,6 +7,5 @@ To get information about the available endpoints, check out the `OpenApiSpec.yam
 
 ## Todo
 
-- [ ] Add integration tests for the rest endpoints
 - [ ] Add a persistent database to store the notes in
 - [ ] Add a dockerfile for easy deployment
