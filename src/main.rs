@@ -11,6 +11,9 @@ mod api;
 mod data;
 mod manager;
 
+#[cfg(test)]
+mod tests;
+
 #[launch]
 fn launch() -> Rocket<Build> {
     rocket::build()
