@@ -77,7 +77,7 @@ paths:
                 content:
                   type: string
       responses:
-        '200':
+        '201':
           description: The note was created successfully
         '409':
           description: A note with the same title already exists

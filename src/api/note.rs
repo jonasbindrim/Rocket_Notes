@@ -34,7 +34,7 @@ pub fn create(note_input: Json<NoteData>, note_manager: &State<Arc<Mutex<NoteMan
     let note_id = manager.add_note(&note_input.get_title(), &note_input.get_content());
 
     match note_id {
-        Ok(()) => Status::Ok,
+        Ok(()) => Status::Created,
         Err(()) => Status::Conflict,
     }
 }
