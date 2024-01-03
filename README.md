@@ -5,6 +5,15 @@ Thematically this project implements a simple api to store a retrieve text notes
 
 To get information about the available endpoints, check out the `OpenApiSpec.yaml`.
 
+## Executing tests
+
+When running the tests with cargo make sure to only use a single thread because all tests use the same database
+which nees to be in specific states for tests to succed. Using a single thread can be done with the --test-thread argument.
+
+```Bash
+cargo test -- --test-threads=1
+```
+
 ## Build docker container
 
 ```Bash
@@ -14,7 +23,3 @@ docker build . -t rocket_notes_img
 # After building the image the following command can be used to run the image
 docker run -dit --name rocket_notes -p 80:80 rocket_notes_img
 ```
-
-## Todo
-
-- [ ] Add a persistent database to store the notes in
