@@ -1,5 +1,5 @@
 ### Requests which creates the note "TestNote"
-POST http://127.0.0.1:8000/note/create HTTP/1.1
+POST http://{{host}}/note/create HTTP/1.1
 content-type: application/json
 
 {
@@ -9,7 +9,7 @@ content-type: application/json
 
 
 ### Requests which creates the note "Another one"
-POST http://127.0.0.1:8000/note/create HTTP/1.1
+POST http://{{host}}/note/create HTTP/1.1
 content-type: application/json
 
 {

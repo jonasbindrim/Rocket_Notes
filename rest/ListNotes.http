@@ -1,2 +1,2 @@
 ### Requests which lists all existing notes
-GET http://127.0.0.1:8000/note/listAll HTTP/1.1
+GET http://{{host}}/note/listAll HTTP/1.1
