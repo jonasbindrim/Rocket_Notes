@@ -31,10 +31,10 @@ paths:
           description: The note with the given title does not exist
   /note/listAll:
     get:
-      summary: Lists the titles of all available nodes
+      summary: Lists the titles of all available notes
       responses:
         '200':
-          description: An array of all available nodes
+          description: An array of all available notes
           content:
             application/json:
               schema:

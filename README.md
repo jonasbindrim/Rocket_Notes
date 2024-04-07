@@ -23,3 +23,11 @@ docker build . -t rocket_notes_img
 # After building the image the following command can be used to run the image
 docker run -dit --name rocket_notes -p 80:80 rocket_notes_img
 ```
+
+## TODO
+
+- [ ] Add better database support
+- [ ] Add priviliged endpoints
+- [ ] Move database into a volumne in docker
+- [ ] Add database migration example
+- [ ] Add a new managed value example
