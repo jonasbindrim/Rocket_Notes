@@ -1,0 +1,20 @@
+counter:
+  get:
+    summary: Returns the counter value
+    tags:
+      - counter
+    responses:
+      '200':
+        description: The counter value
+        content:
+          application/json:
+            schema:
+              type: number
+increment:
+  get:
+    summary: Increments the counter value by 1
+    tags:
+      - counter
+    responses:
+      '200':
+        description: The counter value was incremented successfully

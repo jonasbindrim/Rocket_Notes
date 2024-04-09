@@ -1,14 +1,11 @@
 use crate::data::note::NoteData;
-use crate::launch;
 use crate::tests::prepare_tests;
 use rocket::http::{ContentType, Status};
-use rocket::local::blocking::Client;
 
 /// Test case: Create a single note by using the create-endpoint
 #[test]
 fn create_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     let request_body: &str = "{ \"title\": \"Test\", \"content\": \"Test\" }";
     let response = client
@@ -23,8 +20,7 @@ fn create_note() {
 /// Test case: Create a note with the same title twice
 #[test]
 fn create_duplicate_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     // Create valid note
     let request_body: &str = "{ \"title\": \"Test\", \"content\": \"Test\" }";
@@ -49,8 +45,7 @@ fn create_duplicate_note() {
 /// Test case: Create a lot of notes
 #[test]
 fn create_multiple_notes() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     for note_counter in 0..100 {
         let request_body =
@@ -68,8 +63,7 @@ fn create_multiple_notes() {
 // Test case: Delete a non existing note
 #[test]
 fn delete_not_existing_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
     let response = client.post(uri!("/note/create/Test")).dispatch();
 
     assert_eq!(response.status(), Status::NotFound);
@@ -78,8 +72,7 @@ fn delete_not_existing_note() {
 /// Test case: Delete an existing note
 #[test]
 fn delete_existing_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     // Create note to delete
     let request_body: &str = "{ \"title\": \"Test\", \"content\": \"Test\" }";
@@ -99,8 +92,7 @@ fn delete_existing_note() {
 /// Test case: Read a non existing note
 #[test]
 fn read_not_existing_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     let response = client.get(uri!("/note/read/Test")).dispatch();
 
@@ -110,8 +102,7 @@ fn read_not_existing_note() {
 /// Test case: Read an existing note
 #[test]
 fn read_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     // Create note
     let request_body: &str = "{ \"title\": \"Test\", \"content\": \"Test\" }";
@@ -136,8 +127,7 @@ fn read_note() {
 /// Test case: Read correct existing note
 #[test]
 fn read_correct_note() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     for note_counter in 0..2 {
         let request_body =
@@ -164,8 +154,7 @@ fn read_correct_note() {
 /// Test case: List all notes when no node exists
 #[test]
 fn listall_notes_empty() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     let response = client.get(uri!("/note/listAll")).dispatch();
 
@@ -177,8 +166,7 @@ fn listall_notes_empty() {
 /// Test case: List all notes when nodes exists
 #[test]
 fn listall_notes() {
-    prepare_tests();
-    let client = Client::tracked(launch()).expect("Unable to create rocket client");
+    let client = prepare_tests();
 
     // Create nodes
     for note_counter in 0..100 {

@@ -1,0 +1,2 @@
+### Reads the current count value
+GET http://{{host}}/counter HTTP/1.1

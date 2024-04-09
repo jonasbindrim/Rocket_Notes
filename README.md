@@ -26,8 +26,7 @@ docker run -dit --name rocket_notes -p 80:80 rocket_notes_img
 
 ## TODO
 
-- [ ] Add better database support
 - [ ] Add priviliged endpoints
 - [ ] Move database into a volumne in docker
 - [ ] Add database migration example
-- [ ] Add a new managed value example
+- [ ] 404 Catcher

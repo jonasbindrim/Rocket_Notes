@@ -1,0 +1,2 @@
+### Increments the current count value by one
+GET http://{{host}}/counter/increment HTTP/1.1
