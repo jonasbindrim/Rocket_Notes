@@ -1,6 +1,6 @@
 use std::sync::{Arc, Mutex};
 
-use api::{count::{get_counter, increment_counter}, note::{create, delete, list_all, read}};
+use api::{catcher::not_found, count::{get_counter, increment_counter}, note::{create, delete, list_all, read}};
 use database::note::{init_notesdb, NotesDb};
 use manager::count::CountManager;
 use rocket::{fairing::AdHoc, Build, Rocket};
@@ -24,4 +24,5 @@ fn launch() -> Rocket<Build> {
         .manage(Arc::new(Mutex::new(CountManager::new())))
         .mount("/counter", routes![get_counter, increment_counter])
         .mount("/note", routes![create, read, list_all, delete])
+        .register("/", catchers![not_found])
 }

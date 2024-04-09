@@ -26,7 +26,6 @@ docker run -dit --name rocket_notes -p 80:80 rocket_notes_img
 
 ## TODO
 
-- [ ] Add priviliged endpoints
+- [ ] Add privileged (basic auth) endpoint
 - [ ] Move database into a volumne in docker
 - [ ] Add database migration example
-- [ ] 404 Catcher
