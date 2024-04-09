@@ -1,50 +1,37 @@
-use std::sync::{Arc, Mutex};
+use crate::{
+    data::note::NoteData,
+    database::note::{NotesDb, NotesManager},
+};
+use rocket::{http::Status, serde::json::Json};
 
-use rocket::{http::Status, serde::json::Json, State};
-
-use crate::{data::note::NoteData, manager::note::NoteManager};
-
+/// Returns the note identified by the notes title
 #[get("/read/<title>")]
-pub fn read(
-    title: &str,
-    note_manager: &State<Arc<Mutex<NoteManager>>>,
-) -> Result<Json<NoteData>, Status> {
-    let state_clone = note_manager.inner().clone();
-    let mut manager = state_clone.lock().unwrap();
-
-    let note = manager.get_note(title);
-    match note {
+pub async fn read(database: NotesDb, title: &str) -> Result<Json<NoteData>, Status> {
+    match NotesManager::get_note(database, title.to_string()).await {
         Some(note) => Ok(Json(note.clone())),
         None => Err(Status::NotFound),
     }
 }
 
+/// Returns all existing notes
 #[get("/listAll")]
-pub fn list_all(note_manager: &State<Arc<Mutex<NoteManager>>>) -> Json<Vec<NoteData>> {
-    let state_clone = note_manager.inner().clone();
-    let manager = state_clone.lock().unwrap();
-
-    Json(manager.get_all_notes())
+pub async fn list_all(database: NotesDb) -> Json<Vec<NoteData>> {
+    Json(NotesManager::get_all_notes(database).await)
 }
 
+/// Creates a new note entry
 #[post("/create", format = "json", data = "<note_input>")]
-pub fn create(note_input: Json<NoteData>, note_manager: &State<Arc<Mutex<NoteManager>>>) -> Status {
-    let state_clone = note_manager.inner().clone();
-    let mut manager = state_clone.lock().unwrap();
-    let note_id = manager.add_note(&note_input.get_title(), &note_input.get_content());
-
-    match note_id {
+pub async fn create(database: NotesDb, note_input: Json<NoteData>) -> Status {
+    match NotesManager::add_note(database, note_input.0).await {
         Ok(()) => Status::Created,
         Err(()) => Status::Conflict,
     }
 }
 
+/// Deletes the note with the given title
 #[delete("/delete/<title>")]
-pub fn delete(title: &str, note_manager: &State<Arc<Mutex<NoteManager>>>) -> Status {
-    let state_clone = note_manager.inner().clone();
-    let mut manager = state_clone.lock().unwrap();
-
-    match manager.delete_note(title) {
+pub async fn delete(database: NotesDb, title: &str) -> Status {
+    match NotesManager::delete_note(database, title.to_string()).await {
         Ok(()) => Status::Ok,
         Err(()) => Status::NotFound,
     }

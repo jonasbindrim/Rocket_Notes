@@ -1,6 +1,9 @@
 [default]
 address = "0.0.0.0"
 
+[default.databases.rusqlite]
+url = "file:notes.db"
+
 [release]
 port = 80
 

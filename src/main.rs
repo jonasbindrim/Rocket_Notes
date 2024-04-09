@@ -1,15 +1,13 @@
-use std::sync::{Arc, Mutex};
-
 use api::note::{create, delete, list_all, read};
-use manager::note::NoteManager;
-use rocket::{Build, Rocket};
+use database::note::{init_notesdb, NotesDb};
+use rocket::{fairing::AdHoc, Build, Rocket};
 
 #[macro_use]
 extern crate rocket;
 
 mod api;
 mod data;
-mod manager;
+mod database;
 
 #[cfg(test)]
 mod tests;
@@ -17,6 +15,7 @@ mod tests;
 #[launch]
 fn launch() -> Rocket<Build> {
     rocket::build()
-        .manage(Arc::new(Mutex::new(NoteManager::new())))
+        .attach(NotesDb::fairing())
+        .attach(AdHoc::on_ignite("Init NotesDb", init_notesdb))
         .mount("/note", routes![create, read, list_all, delete])
 }

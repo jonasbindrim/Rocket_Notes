@@ -13,4 +13,7 @@ no_effect_underscore_binding = "allow"
 
 [dependencies]
 rocket = { version = "0.5", features = ["json"] }
-rusqlite = { version = "0.30", features = ["bundled"] }
+
+[dependencies.rocket_sync_db_pools]
+version = "0.1.0"
+features = [ "sqlite_pool" ]
