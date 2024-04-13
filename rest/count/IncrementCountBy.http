@@ -1,0 +1,12 @@
+### Increments the current count value by the given number
+### This request doesnt authorize and therefore should fail with 401
+GET http://{{host}}/counter/increment/10 HTTP/1.1
+
+### Increments the current count value by the given number
+### This request fails to authorize and therefore should fail with 401
+GET http://{{host}}/counter/increment/10 HTTP/1.1
+Authorization: Basic username:username
+
+### Increments the current count value by the given number
+GET http://{{host}}/counter/increment/10 HTTP/1.1
+Authorization: Basic username:password

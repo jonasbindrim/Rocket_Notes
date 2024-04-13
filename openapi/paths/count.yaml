@@ -18,3 +18,20 @@ increment:
     responses:
       '200':
         description: The counter value was incremented successfully
+incrementByValue:
+  get:
+    summary: Increments the counter value by the given number
+    security:
+      - BasicAuth: []
+    tags:
+      - counter
+    parameters:
+      - name: value
+        in: path
+        required: true
+        description: The value by which the counter is incremented
+        schema:
+          type: string
+    responses:
+      '200':
+        description: The counter value was incremented successfully

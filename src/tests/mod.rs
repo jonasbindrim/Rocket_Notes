@@ -1,10 +1,11 @@
-use std::fs;
 use crate::launch;
+use std::fs;
 
 use rocket::local::blocking::Client;
 
-pub mod note;
+pub mod auth;
 pub mod count;
+pub mod note;
 
 /// Deletes the current db-file to run the tests against a clean environment
 fn prepare_tests() -> Client {

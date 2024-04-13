@@ -1,3 +1,3 @@
-pub mod note;
-pub mod count;
 pub mod catcher;
+pub mod count;
+pub mod note;

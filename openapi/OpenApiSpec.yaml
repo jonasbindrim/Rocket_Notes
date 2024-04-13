@@ -2,7 +2,14 @@ openapi: 3.0.0
 info:
   title: Rocket Notes Api
   description: Api for remote note management
-  version: 0.2.0
+  version: 0.2.1
+
+components:
+  securitySchemes:
+
+    BasicAuth:
+      type: http
+      scheme: basic
 
 servers:
   - url: http://localhost:5000
@@ -12,6 +19,8 @@ paths:
     $ref: "./paths/count.yaml#/counter"
   /counter/increment:
     $ref: "./paths/count.yaml#/increment"
+  /counter/increment/{value}:
+    $ref: "./paths/count.yaml#/incrementByValue"
   /note/read/{title}:
     $ref: "./paths/note.yaml#/read"
   /note/listAll:

@@ -1,14 +1,14 @@
 /// Counts certain actions.
-/// Not stored persistently. 
+/// Not stored persistently.
 /// Resets after each service restart.
 pub struct CountManager {
-    counter: u32
+    counter: u32,
 }
 
 impl CountManager {
     /// Creates a new `StatManager`-struct
     pub fn new() -> Self {
-        return CountManager { counter: 0 }
+        CountManager { counter: 0 }
     }
 
     /// Increments the counter by one
@@ -16,9 +16,15 @@ impl CountManager {
         self.counter += 1;
     }
 
+    /// Increments the counter by the given value
+    /// - `amount` The number by which to increment the counter
+    pub fn increment_by(&mut self, amount: u32) {
+        self.counter += amount;
+    }
+
     /// Returns the current counter value of this manager
     /// - `returns` The current counter value of this manager
     pub fn value(&self) -> u32 {
-        return self.counter;
+        self.counter
     }
 }

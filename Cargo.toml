@@ -12,6 +12,7 @@ module_name_repetitions = "allow"
 no_effect_underscore_binding = "allow"
 
 [dependencies]
+http-auth-basic = "0.3.3"
 rocket = { version = "0.5", features = ["json"] }
 
 [dependencies.rocket_sync_db_pools]
