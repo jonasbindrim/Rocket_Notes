@@ -5,6 +5,16 @@ Thematically this project implements a simple api to store a retrieve text notes
 
 To get information about the available endpoints, check out the `OpenApiSpec.yaml`.
 
+## Endpoints permissions
+
+This project uses BasicAuth to authorize access to some endpoints. Since this is only for demonstration purposes
+the required access data is currently hardcoded.
+
+BasicAuth data:
+
+Username: `username`  
+Password: `password`
+
 ## Executing tests
 
 When running the tests with cargo make sure to only use a single thread because all tests use the same database
